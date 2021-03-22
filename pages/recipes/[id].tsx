@@ -24,8 +24,8 @@ function RecipePage() {
             <img src={recipe.image_url} className="width-full"></img>
             <div className="m-2 text-xl font-black">{recipe.title}</div>
             <div className="text-gray-600 text-xs">
-                <span className="pl-3">{recipe.author.user_name}</span>
-                <span className="pl-2">{recipe.published_at}</span>
+                <span className="p-3">{recipe.author.user_name}</span>
+                <span className="p-3">{recipe.published_at}</span>
             </div>
             <div className="m-3 text-sm">{recipe.description}</div>
 

@@ -13,16 +13,30 @@ export type Recipe = {
       quantity: string;
     }[];
 };
+
+export type RecipesResponce = {
+  recipes: Recipe[];
+
+  links: {
+    next?: string;
+    prev?: string;
+  };
+}
+
+export async function getRecipes(option?): Promise<RecipesResponce> {
+  let url = 'https://internship-recipe-api.ckpd.co/recipes'
+  if(option){
+    url = 'https://internship-recipe-api.ckpd.co/recipes' + option
+  }
   
-export async function getRecipes(): Promise<Recipe[]> {
-  const res = await fetch('https://internship-recipe-api.ckpd.co/recipes', {
+  const res = await fetch(url, {
    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
   const recipes = await res.json();
-  return recipes.recipes;
+  return recipes;
 }
 
-export async function getRecipe(id): Promise<Recipe> {
+export async function getRecipe(id: string | string[]): Promise<Recipe> {
   const url = 'https://internship-recipe-api.ckpd.co/recipes?id=' + id
   const res = await fetch(url, {
    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
