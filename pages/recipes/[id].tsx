@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from "next/link";
 import { getRecipe, Recipe } from '../getRecipes';
 import { useRouter } from 'next/router'
 import 'tailwindcss/tailwind.css'
@@ -20,7 +21,9 @@ function RecipePage() {
 
     return (
         <div className="text-gray-700">
-            <h1 className="text-center py-2 bg-gray-300 text-3xl">レシピ検索！</h1>
+            <Link href="/">
+              <h1 className="text-center py-2 bg-gray-300 text-3xl">レシピ検索！</h1>
+            </Link>
             <img src={recipe.image_url} className="width-full"></img>
             <div className="m-2 text-xl font-black">{recipe.title}</div>
             <div className="text-gray-600 text-xs">

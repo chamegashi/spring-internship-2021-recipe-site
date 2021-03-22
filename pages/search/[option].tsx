@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link";
-import { getRecipes, RecipesResponce} from './getRecipes';
+import { searchRecipes, RecipesResponce} from '../getRecipes';
 import 'tailwindcss/tailwind.css'
 
 const Pagenatoin: FC = () => {
@@ -12,7 +12,7 @@ const Pagenatoin: FC = () => {
 
   useEffect(() => {
     (async () => {
-      const RecipesResponce = await getRecipes(router.query.option);
+      const RecipesResponce = await searchRecipes(router.query.option);
       setRecipe(RecipesResponce);
     })();
   }, [router.query.option]);

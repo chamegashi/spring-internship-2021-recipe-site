@@ -46,3 +46,14 @@ export async function getRecipe(id: string | string[]): Promise<Recipe> {
   console.log(recipe)
   return recipe.recipes[0];
 }
+
+export async function searchRecipes(option): Promise<RecipesResponce> {
+  let url = 'https://internship-recipe-api.ckpd.co/search?' + option
+  
+  const res = await fetch(url, {
+   headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+  });
+  const responce = await res.json();
+  console.log(responce)
+  return responce;
+}
