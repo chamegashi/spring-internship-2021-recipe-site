@@ -4,23 +4,30 @@ import Link from "next/link";
 
 const Home: FC = () => {
 
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [recipes, setRecipe] = useState<Recipe[] | null>(null);
     
   useEffect(() => {
     (async () => {
-      const recipe = await getRecipes();
-      setRecipe(recipe);
+      const recipes = await getRecipes();
+      setRecipe(recipes);
     })();
   }, []);
 
-  if (recipe === null) return <div> Loading </div>
+  if (recipes === null) return <div> Loading </div>
 
   return (
         <div className="App">
           <header className="App-header"></header>
           <h1>Home test!</h1>
+
+          <ul>
+            {recipes.map((recipe) => {
+              return <li key={recipe.id}>
+                <Link href={'/recipes/' + recipe.id}>{recipe.title}</Link>
+              </li>
+            })}
+          </ul>
     
-          <h2>{recipe.id}</h2>
         </div>
   );
 };

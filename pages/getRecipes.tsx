@@ -1,4 +1,4 @@
-import { promises } from "node:fs";
+import dotenv from "dotenv";
 
 export type Recipe = {
     id: string;
@@ -15,7 +15,9 @@ export type Recipe = {
     }[];
 };
   
-export async function getRecipes(): Promise<Recipe> {
+export async function getRecipes(): Promise<Recipe[]> {
+  const config = dotenv.config();
+  console.log(config)
   const res = await fetch('https://internship-recipe-api.ckpd.co/recipes', {
    headers: { 'X-Api-Key': 'test' }
   });
