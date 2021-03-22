@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { getRecipes, Recipe } from './getRecipes';
+import 'tailwindcss/tailwind.css'
 import Link from "next/link";
 
 const Home: FC = () => {
@@ -17,12 +18,11 @@ const Home: FC = () => {
 
   return (
         <div className="App">
-          <header className="App-header"></header>
-          <h1>Home test!</h1>
+          <h1 className="text-center bg-yellow-200 text-gray-800 text-2xl">Home test!</h1>
 
           <ul>
             {recipes.map((recipe) => {
-              return <li key={recipe.id}>
+              return <li className="text-blue-600" key={recipe.id}>
                 <Link href={'/recipes/' + recipe.id}>{recipe.title}</Link>
               </li>
             })}
