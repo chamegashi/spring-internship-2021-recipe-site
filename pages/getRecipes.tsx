@@ -7,6 +7,7 @@ export type Recipe = {
       user_name: string;
     };
     steps: string[];
+    published_at: string;
     ingredients: {
       name: string;
       quantity: string;
@@ -21,10 +22,12 @@ export async function getRecipes(): Promise<Recipe[]> {
   return recipes.recipes;
 }
 
-export async function getRecipe(): Promise<Recipe> {
-  const res = await fetch('https://internship-recipe-api.ckpd.co/recipes', {
+export async function getRecipe(id): Promise<Recipe> {
+  const url = 'https://internship-recipe-api.ckpd.co/recipes?id=' + id
+  const res = await fetch(url, {
    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
-  const recipes = await res.json();
-  return recipes.recipes;
+  const recipe = await res.json();
+  console.log(recipe)
+  return recipe.recipes[0];
 }

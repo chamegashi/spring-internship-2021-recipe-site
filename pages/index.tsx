@@ -18,7 +18,7 @@ const Home: FC = () => {
 
   return (
         <div className="App">
-          <h1 className="text-center bg-yellow-200 text-gray-800 text-2xl">Home test!</h1>
+            <h1 className="text-center py-2 bg-gray-300 text-3xl">レシピ検索！</h1>
 
           <ul>
             {recipes.map((recipe) => {
