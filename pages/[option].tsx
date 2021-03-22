@@ -1,18 +1,20 @@
 import { FC, useEffect, useState } from 'react';
-import { getRecipes, RecipesResponce} from './getRecipes';
+import { useRouter } from 'next/router'
 import Link from "next/link";
+import { getRecipes, RecipesResponce} from './getRecipes';
 import 'tailwindcss/tailwind.css'
 
-const Home: FC = () => {
+const Pagenatoin: FC = () => {
+  const router = useRouter();
 
   const [RecipesResponce, setRecipe] = useState<RecipesResponce | null>(null);
     
   useEffect(() => {
     (async () => {
-      const RecipesResponce = await getRecipes();
+      const RecipesResponce = await getRecipes(router.query.option);
       setRecipe(RecipesResponce);
     })();
-  }, []);
+  }, [router.query.option]);
 
   if (RecipesResponce === null) return <div> Loading </div>
 
@@ -66,4 +68,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default Pagenatoin;

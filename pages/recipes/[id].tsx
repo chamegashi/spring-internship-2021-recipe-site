@@ -30,17 +30,17 @@ function RecipePage() {
             <div className="m-3 text-sm">{recipe.description}</div>
 
             <div className="mt-2 py-1 pl-4 font-semibold bg-gray-300">材料</div>
-            {recipe.ingredients.map((food) => {
-              return <div className="relative border-t-2 border-gray-300 h-14">
+            {recipe.ingredients.map((food, i) => {
+              return <div key={i} className="relative border-t-2 border-gray-300 h-14">
                   <span className="m-3.5 font-semibold absolute left-0">{food.name}</span>
                   <span className="m-3.5 font-semibold absolute right-0">{food.quantity}</span>
               </div>
             })}
 
             <div className="mt-2 py-1 pl-4 font-semibold bg-gray-300">手順</div>
-            {recipe.steps.map((step, index) => {
-              return <div className="border-t-2 border-gray-300">
-                  <p className="p-4 font-semibold">{(index+1) + ". " + step}</p>
+            {recipe.steps.map((step, i) => {
+              return <div key={i} className="border-t-2 border-gray-300">
+                  <p className="p-4 font-semibold">{(i+1) + ". " + step}</p>
               </div>
             })}
 

@@ -26,14 +26,15 @@ export type RecipesResponce = {
 export async function getRecipes(option?): Promise<RecipesResponce> {
   let url = 'https://internship-recipe-api.ckpd.co/recipes'
   if(option){
-    url = 'https://internship-recipe-api.ckpd.co/recipes' + option
+    url = 'https://internship-recipe-api.ckpd.co/recipes?' + option
   }
   
   const res = await fetch(url, {
    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
-  const recipes = await res.json();
-  return recipes;
+  const responce = await res.json();
+  console.log(responce)
+  return responce;
 }
 
 export async function getRecipe(id: string | string[]): Promise<Recipe> {
