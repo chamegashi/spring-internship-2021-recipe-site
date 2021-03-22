@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-
 export type Recipe = {
     id: string;
     title: string;
@@ -16,10 +14,8 @@ export type Recipe = {
 };
   
 export async function getRecipes(): Promise<Recipe[]> {
-  const config = dotenv.config();
-  console.log(config)
   const res = await fetch('https://internship-recipe-api.ckpd.co/recipes', {
-   headers: { 'X-Api-Key': 'test' }
+   headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
   const recipes = await res.json();
   return recipes.recipes;
@@ -27,7 +23,7 @@ export async function getRecipes(): Promise<Recipe[]> {
 
 export async function getRecipe(): Promise<Recipe> {
   const res = await fetch('https://internship-recipe-api.ckpd.co/recipes', {
-   headers: { 'X-Api-Key': 'test' }
+   headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
   const recipes = await res.json();
   return recipes.recipes;
