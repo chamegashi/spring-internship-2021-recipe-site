@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-import { getRecipe, Recipe } from '../getRecipes';
+import { getRecipe, Recipe } from '../api/getRecipes';
 import { useRouter } from 'next/router'
 import 'tailwindcss/tailwind.css'
 

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link";
-import { getRecipes, RecipesResponce} from './getRecipes';
+import { getRecipes, RecipesResponce} from './api/getRecipes';
 import 'tailwindcss/tailwind.css'
 
 const Pagenatoin: FC = () => {

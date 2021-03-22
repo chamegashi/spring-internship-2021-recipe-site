@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { getRecipes, RecipesResponce} from './getRecipes';
+import { getRecipes, RecipesResponce} from './api/getRecipes';
 import Link from "next/link";
 import 'tailwindcss/tailwind.css'
 
