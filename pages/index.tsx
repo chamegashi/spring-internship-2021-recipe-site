@@ -22,7 +22,7 @@ const Home: FC<Props> = (props) => {
   return (
         <div className="App text-gray-700">
           <Link href="/">
-            <h1 className="text-center py-2 bg-gray-300 text-3xl">レシピ検索！</h1>
+            <h1 className="text-center py-2 bg-gray-300 text-3xl cursor-pointer">レシピ検索！</h1>
           </Link>
 
           <div className="p-2">
@@ -45,7 +45,7 @@ const Home: FC<Props> = (props) => {
           {(() => {
               if(RecipesResponce.links.prev) {
                 return <Link href={'/' + RecipesResponce.links.prev.split('?')[1]}>
-                  <div className="my-7 mx-3 font-semibold absolute left-0">前のページ</div>
+                  <div className="my-7 mx-3 font-semibold absolute left-0 cursor-pointer">前のページ</div>
                 </Link>
               }
             })()}
@@ -53,7 +53,7 @@ const Home: FC<Props> = (props) => {
           {(() => {
             if(RecipesResponce.links.next) {
               return <Link href={'/' + RecipesResponce.links.next.split('?')[1]}>
-                <div className="my-7 mx-3 font-semibold absolute right-0">次のページ</div>
+                <div className="my-7 mx-3 font-semibold absolute right-0 cursor-pointer">次のページ</div>
               </Link>
             }
             })()}

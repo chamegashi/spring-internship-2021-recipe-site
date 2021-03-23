@@ -1,7 +1,10 @@
-import { FC, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { getRecipe, Recipe } from '../api/getRecipes';
 import { GetServerSideProps, NextPage } from 'next';
+
+import db from '../api/db';
+import {findFavoriteRecipe, getFavoriteRecipes} from '../api/favoriteRecipesRepository';
 import 'tailwindcss/tailwind.css'
 
 type Props = {
@@ -11,17 +14,41 @@ type Props = {
 const RecipePage: NextPage<Props> = (props) => {
     const { recipe } = props;
     const [searchText, setSearchText] = useState<string>('');
+    const [favorite, setFavorite] = useState<boolean>(false);
   
     if (recipe === null) return <div> Loading </div>
-  
+
+    useEffect(() => {
+      db.table('recipes')
+      .where('id')
+      .equals(recipe.id)
+      .each((getrecipe) => {
+        setFavorite(true);
+      })
+    }, []);
+
     const searchTextChange = (event) => {
       setSearchText(event.target.value);
+    }
+
+    const favoriteToggle = () => {
+      if (favorite) {
+        db.table('recipes')
+        .delete(recipe.id)
+        .catch((e) => console.log(e));
+      } else {
+        db.table('recipes')
+        .put({id: recipe.id})
+        .catch((e) => console.log(e));
+      }
+
+      setFavorite(!favorite)
     }
 
     return (
         <div className="text-gray-700">
             <Link href="/">
-              <h1 className="text-center py-2 bg-gray-300 text-3xl">レシピ検索！</h1>
+              <h1 className="text-center py-2 bg-gray-300 text-3xl cursor-pointer">レシピ検索！</h1>
             </Link>
 
             <div className="p-2">
@@ -43,6 +70,16 @@ const RecipePage: NextPage<Props> = (props) => {
                 <span className="p-3">{recipe?.author.user_name}</span>
                 <span className="p-3">{recipe?.published_at}</span>
             </div>
+
+            {(() => {
+              if(favorite) {
+                return <button onClick={favoriteToggle} className="bg-red-500 hover:bg-red-700 text-white font-bold m-1 py-1 px-4 rounded-full">お気に入り削除</button>
+              } else {
+                return <button onClick={favoriteToggle} className="bg-blue-500 hover:bg-blue-700 text-white font-bold m-1 py-1 px-4 rounded-full">お気に入り追加</button>
+              }
+            })()}
+
+
             <div className="m-3 text-sm">{recipe?.description}</div>
 
             <div className="mt-2 py-1 pl-4 font-semibold bg-gray-300">材料</div>
