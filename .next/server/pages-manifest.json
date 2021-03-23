@@ -1,0 +1,12 @@
+{
+  "/[option]": "pages/[option].html",
+  "/api/getRecipes": "pages/api/getRecipes.js",
+  "/api/recipes": "pages/api/recipes.js",
+  "/": "pages/index.html",
+  "/recipes/[id]": "pages/recipes/[id].html",
+  "/search/[option]": "pages/search/[option].html",
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}
