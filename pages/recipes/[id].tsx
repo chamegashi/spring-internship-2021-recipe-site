@@ -8,6 +8,7 @@ function RecipePage() {
     const router = useRouter();
 
     const [recipe, setRecipe] = useState<Recipe | null>(null);
+    const [searchText, setSearchText] = useState<string>('');
     
     useEffect(() => {
       (async () => {
@@ -18,12 +19,29 @@ function RecipePage() {
   
     if (recipe === null) return <div> Loading </div>
   
+    const searchTextChange = (event) => {
+      setSearchText(event.target.value);
+    }  
 
     return (
         <div className="text-gray-700">
             <Link href="/">
               <h1 className="text-center py-2 bg-gray-300 text-3xl">レシピ検索！</h1>
             </Link>
+
+            <div className="p-2">
+              <div className="bg-white flex items-center rounded-md border border-gray-200">
+                <input className="w-full py-1 px-3 text-gray-700 font-semibold leading-tight focus:outline-none" type="text" name="searchText" value={searchText} onChange={searchTextChange} placeholder="レシピの検索"></input>
+                <div className="p-2">
+                  <Link href={'/search/keyword=' + searchText}>
+                    <button className="bg-gray-200 text-white rounded-full border border-gray-300 p-2 hover:bg-blue-300 focus:outline-none w-8 h-8 flex items-center justify-center">
+                      <img src="/search.png"></img>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             <img src={recipe.image_url} className="width-full"></img>
             <div className="m-2 text-xl font-black">{recipe.title}</div>
             <div className="text-gray-600 text-xs">

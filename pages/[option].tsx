@@ -35,8 +35,8 @@ const Pagenatoin: FC = () => {
               <input className="w-full py-1 px-3 text-gray-700 font-semibold leading-tight focus:outline-none" type="text" name="searchText" value={searchText} onChange={searchTextChange} placeholder="レシピの検索"></input>
               <div className="p-2">
                 <Link href={'search/keyword=' + searchText}>
-                  <button className="bg-gray-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-8 h-8 flex items-center justify-center">
-                    <img ></img>
+                  <button className="bg-gray-200 text-white rounded-full border border-gray-300 p-2 hover:bg-blue-300 focus:outline-none w-8 h-8 flex items-center justify-center">
+                    <img src="/search.png"></img>
                   </button>
                 </Link>
               </div>
