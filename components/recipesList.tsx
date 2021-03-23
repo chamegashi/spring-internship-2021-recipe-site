@@ -15,7 +15,9 @@ const recipesList: FC<Props> = (props) => {
           {props.recipes.map((recipe, i) => {
             return <Link key={i} href={'/recipes/' + recipe.id}>
                 <div className="border border-b-2 border-bg-300 h-28 flex justify-center">
-                  <img src={recipe.image_url} className="w-1/3 h-3/5 mx-2 my-5"></img>
+                  <div className="w-1/3">
+                    <img src={recipe.image_url} className="p-4 max-h-28 object-cartain object-center"></img>
+                  </div>
                   <div className="w-2/3">
                     <h1 className="text-center p-1 font-bold text-sm">{recipe.title}</h1>
                     <h1 className="text-center p-1 text-xs">{recipe.description}</h1>
