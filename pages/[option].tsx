@@ -26,9 +26,16 @@ const Pagenatoin: FC = () => {
 
   return (
         <div className="App text-gray-700">
-          <Link href="/">
-            <h1 className="text-center py-2 bg-gray-300 text-3xl cursor-pointer">レシピ検索！</h1>
-          </Link>
+          <div className="bg-gray-300 py-2 text-center relative">
+            <Link href="/">
+              <span className="text-3xl cursor-pointer">レシピ検索！</span>
+            </Link>
+            <div className="absolute right-0 top-0 my-2 mx-4">
+              <Link href="/favorite">
+                <img className="h-9 cursor-pointer" src="/star.png"></img>
+              </Link>
+            </div>
+          </div>
 
           <div className="p-2">
             <div className="bg-white flex items-center rounded-md border border-gray-200">

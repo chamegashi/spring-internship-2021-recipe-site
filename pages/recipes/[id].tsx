@@ -4,7 +4,6 @@ import { getRecipe, Recipe } from '../api/getRecipes';
 import { GetServerSideProps, NextPage } from 'next';
 
 import db from '../api/db';
-import {findFavoriteRecipe, getFavoriteRecipes} from '../api/favoriteRecipesRepository';
 import 'tailwindcss/tailwind.css'
 
 type Props = {
@@ -22,7 +21,7 @@ const RecipePage: NextPage<Props> = (props) => {
       db.table('recipes')
       .where('id')
       .equals(recipe.id)
-      .each((getrecipe) => {
+      .each((recipe) => {
         setFavorite(true);
       })
     }, []);
@@ -38,7 +37,12 @@ const RecipePage: NextPage<Props> = (props) => {
         .catch((e) => console.log(e));
       } else {
         db.table('recipes')
-        .put({id: recipe.id})
+        .put({
+          id: recipe.id,
+          title: recipe.title,
+          description: recipe.description,
+          image_url: recipe.image_url
+        })
         .catch((e) => console.log(e));
       }
 

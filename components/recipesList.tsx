@@ -10,7 +10,7 @@ type Props = {
 const recipesList: FC<Props> = (props) => {
 
   return (
-        <div className="App text-gray-700">
+        <div className="App text-gray-700 cursor-pointer">
 
           {props.recipes.map((recipe, i) => {
             return <Link key={i} href={'/recipes/' + recipe.id}>

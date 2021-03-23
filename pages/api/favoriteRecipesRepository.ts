@@ -24,8 +24,6 @@ export async function findFavoriteRecipe(recipeId: string) {
             console.log(getrecipe)
             return getrecipe
     })
-    
-    getFavoriteRecipes()
 }
 
 export function addFavoriteRecipe(recipeId: string) {
