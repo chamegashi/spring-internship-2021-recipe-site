@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function (req, res) {\n  res.json({\n    id: 123\n  });\n}","map":null,"metadata":{},"sourceType":"module"}

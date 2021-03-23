@@ -1,20 +1,17 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { getRecipes, RecipesResponce} from './api/getRecipes';
 import Link from "next/link";
 import 'tailwindcss/tailwind.css'
 import RecipesList from '../components/recipesList';
 
-const Home: FC = () => {
+type Props = {
+  RecipesResponce: RecipesResponce;
+}
 
-  const [RecipesResponce, setRecipe] = useState<RecipesResponce | null>(null);
+const Home: FC<Props> = (props) => {
+
+  const { RecipesResponce } = props
   const [searchText, setSearchText] = useState<string>('');
-
-  useEffect(() => {
-    (async () => {
-      const RecipesResponce = await getRecipes();
-      setRecipe(RecipesResponce);
-    })();
-  }, []);
 
   if (RecipesResponce === null) return <div> Loading </div>
 
@@ -65,5 +62,14 @@ const Home: FC = () => {
       </div>
   );
 };
+
+export const getStaticProps = async () => {
+  const RecipesResponce = await getRecipes();
+  return {
+    props: {
+      RecipesResponce: RecipesResponce
+    }
+  }
+}
 
 export default Home;
