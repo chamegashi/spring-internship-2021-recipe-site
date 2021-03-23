@@ -30,7 +30,8 @@ export async function getRecipes(option?): Promise<RecipesResponce> {
   }
   
   const res = await fetch(url, {
-   headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+    // headers: { 'X-Api-Key': 'remark-fish-magician' }
+    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
   const responce = await res.json();
   console.log(responce)
@@ -40,7 +41,8 @@ export async function getRecipes(option?): Promise<RecipesResponce> {
 export async function getRecipe(id: string | string[]): Promise<Recipe> {
   const url = 'https://internship-recipe-api.ckpd.co/recipes?id=' + id
   const res = await fetch(url, {
-   headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+    // headers: { 'X-Api-Key': 'remark-fish-magician' }
+    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
   const recipe = await res.json();
   console.log(recipe)
@@ -51,7 +53,8 @@ export async function searchRecipes(option): Promise<RecipesResponce> {
   let url = 'https://internship-recipe-api.ckpd.co/search?' + option
   
   const res = await fetch(url, {
-   headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+    // headers: { 'X-Api-Key': 'remark-fish-magician' }
+    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
   });
   const responce = await res.json();
   console.log(responce)
