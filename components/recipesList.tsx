@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Recipe } from '../pages/api/getRecipes';
+import { Recipe } from '../pages/api/interface';
 import Link from "next/link";
 import 'tailwindcss/tailwind.css'
 

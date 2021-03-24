@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import Link from "next/link";
 
-import { getRecipes, RecipesResponce} from './api/getRecipes';
+import { RecipesResponce} from './api/interface';
 import RecipesList from '../components/recipesList';
 import 'tailwindcss/tailwind.css'
 
@@ -72,10 +72,16 @@ const Home: FC<Props> = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const RecipesResponce = await getRecipes();
+  let url = 'https://internship-recipe-api.ckpd.co/recipes'
+  
+  const res = await fetch(url, {
+    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+  });
+  const responce = await res.json();
+
   return {
     props: {
-      RecipesResponce: RecipesResponce
+      RecipesResponce: responce
     }
   }
 }

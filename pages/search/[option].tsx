@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link";
-import { RecipesResponce} from '../api/getRecipes';
+
+import { RecipesResponce } from '../api/interface';
 import { searchRecipesQL } from '../api/graphqlQuery'
 import 'tailwindcss/tailwind.css'
 import RecipesList from '../../components/recipesList';

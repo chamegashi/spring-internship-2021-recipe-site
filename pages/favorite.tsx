@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import Link from "next/link";
-import { Recipe} from './api/getRecipes';
+import { Recipe } from './api/interface';
 
 import db from './api/db'
 import 'tailwindcss/tailwind.css'

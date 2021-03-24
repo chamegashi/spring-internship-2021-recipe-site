@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
-import { Recipe } from '../api/getRecipes';
-import { getRecipeQL } from '../api/graphqlQuery'
 import { GetServerSideProps, NextPage } from 'next';
 
+import { Recipe } from '../api/interface';
+import { getRecipeQL } from '../api/graphqlQuery'
 import db from '../api/db';
 import 'tailwindcss/tailwind.css'
 

@@ -1,4 +1,4 @@
-import { RecipesResponce, Recipe } from "./getRecipes";
+import { RecipesResponce, Recipe } from "./interface";
 
 export async function getRecipesQL(option?): Promise<RecipesResponce> {
   if(!option){
