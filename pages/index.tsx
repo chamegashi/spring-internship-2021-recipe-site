@@ -1,8 +1,9 @@
 import { FC, useState } from 'react';
-import { getRecipes, RecipesResponce} from './api/getRecipes';
 import Link from "next/link";
-import 'tailwindcss/tailwind.css'
+
+import { getRecipes, RecipesResponce} from './api/getRecipes';
 import RecipesList from '../components/recipesList';
+import 'tailwindcss/tailwind.css'
 
 type Props = {
   RecipesResponce: RecipesResponce;

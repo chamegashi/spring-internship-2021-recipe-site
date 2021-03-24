@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link";
-import { getRecipes, RecipesResponce} from './api/getRecipes';
+import { RecipesResponce} from './api/getRecipes';
+import { getRecipesQL } from './api/graphqlQuery'
 import 'tailwindcss/tailwind.css'
 import RecipesList from '../components/recipesList';
 
@@ -13,7 +14,7 @@ const Pagenatoin: FC = () => {
 
   useEffect(() => {
     (async () => {
-      const RecipesResponce = await getRecipes(router.query.option);
+      const RecipesResponce = await getRecipesQL(router.query.option);
       setRecipe(RecipesResponce);
     })();
   }, [router.query.option]);
