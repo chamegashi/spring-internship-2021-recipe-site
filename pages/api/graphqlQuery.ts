@@ -5,7 +5,8 @@ export async function getRecipesQL(option?): Promise<RecipesResponce> {
   if(!option){
     option = 'notOption'
   }
-  const url = 'http://localhost:3000/api/graphql'
+  const url = 'https://tanaka-mas-spring-internship-2021-recipe-site.vercel.app/api/graphql'
+  // const url = 'http://localhost:3000/api/graphql'
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -36,7 +37,8 @@ export async function getRecipeQL(id: string | string[]): Promise<Recipe> {
   if(!id){
     id = 'notId'
   }
-  const url = 'http://localhost:3000/api/graphql'
+  const url = 'https://tanaka-mas-spring-internship-2021-recipe-site.vercel.app/api/graphql'
+  // const url = 'http://localhost:3000/api/graphql'
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -67,7 +69,8 @@ export async function getRecipeQL(id: string | string[]): Promise<Recipe> {
 }
 
 export async function searchRecipesQL(option): Promise<RecipesResponce> {
-  const url = 'http://localhost:3000/api/graphql'
+  const url = 'https://tanaka-mas-spring-internship-2021-recipe-site.vercel.app/api/graphql'
+  // const url = 'http://localhost:3000/api/graphql'
   
   const res = await fetch(url, {
     method: 'POST',
