@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 
   input SearchRequest {
-    option: String!
+    option: String
   }
 
   type RecipesResponce {
@@ -58,7 +58,7 @@ const resolvers = {
       let url = 'https://internship-recipe-api.ckpd.co/recipes'
 
       if(args.recipesRequest.option){
-        url = 'https://internship-recipe-api.ckpd.co/recipes?' + args.recipesRequest.option
+        url = 'https://internship-recipe-api.ckpd.co/recipes?' + encodeURI(args.recipesRequest.option)
       }
           
       const res = await fetch(url, {
@@ -72,6 +72,7 @@ const resolvers = {
       }
       return recipes;
     },
+
     recipeQuery: async (parent, args, context, info) => {
       let url = 'https://internship-recipe-api.ckpd.co/recipes?id='
 
@@ -85,14 +86,21 @@ const resolvers = {
       const responce = await res.json()
       return responce.recipes[0];    
     },
-    searchQuery: async (parent, args, context, info) => {
-      const resRecipes = await searchRecipes(args.searchRequest.id)
 
-      let recipes = {
-        recipes: resRecipes.recipes,
-        links: resRecipes.links
-      }
-      return recipes;
+    searchQuery: async (parent, args, context, info) => {
+      console.log(args.searchRequest.option)
+
+      let url = 'https://internship-recipe-api.ckpd.co/search?' + encodeURI(args.searchRequest.option)
+
+      console.log(args.searchRequest.option)
+
+      const res = await fetch(url, {
+        headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+      });
+
+      const responce = await res.json();
+      console.log(responce)
+      return responce;
     },
   }
 };

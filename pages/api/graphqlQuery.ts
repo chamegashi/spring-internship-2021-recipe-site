@@ -1,32 +1,6 @@
 import { RecipesResponce, Recipe } from "./getRecipes";
 import { gql } from '@apollo/client';
 
-const url = 'http://localhost:3000/api/graphql'
-
-const GET_RECIPES = gql`
-query {
-  recipes {
-    recipes {
-      id
-      title
-      description
-      image_url
-    }
-  }
-}
-`
-
-function makeSearchQuery(id) {
-  const SEARCH_RECIPES = gql`
-  query {
-    recipe(recipeRequest: {id}) {
-      id
-      title
-    }
-  }
-  `
-}
-
 export async function getRecipesQL(option?): Promise<RecipesResponce> {
   if(!option){
     option = 'notOption'
@@ -93,12 +67,30 @@ export async function getRecipeQL(id: string | string[]): Promise<Recipe> {
 }
 
 export async function searchRecipesQL(option): Promise<RecipesResponce> {
-  let url = 'https://internship-recipe-api.ckpd.co/search?' + option
+  const url = 'http://localhost:3000/api/graphql'
   
   const res = await fetch(url, {
-    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query:
+    `
+    query {
+      searchQuery(searchRequest: {option: "` + option + `"}) {
+        recipes {
+          id
+          title
+          description
+          image_url
+        }
+        links {
+          next
+          prev
+        }
+      }
+    }
+    `
+    })
   });
   const responce = await res.json();
-  console.log(responce)
-  return responce;
+  return responce.data.searchQuery;
 }

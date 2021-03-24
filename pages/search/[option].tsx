@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from "next/link";
-import { searchRecipes, RecipesResponce} from '../api/getRecipes';
+import { RecipesResponce} from '../api/getRecipes';
+import { searchRecipesQL } from '../api/graphqlQuery'
 import 'tailwindcss/tailwind.css'
 import RecipesList from '../../components/recipesList';
 
@@ -13,7 +14,7 @@ const Pagenatoin: FC = () => {
 
   useEffect(() => {
     (async () => {
-      const RecipesResponce = await searchRecipes(router.query.option);
+      const RecipesResponce = await searchRecipesQL(router.query.option);
       setRecipe(RecipesResponce);
     })();
   }, [router.query.option]);
@@ -56,7 +57,7 @@ const Pagenatoin: FC = () => {
 
           {(() => {
               if(RecipesResponce.links.prev) {
-                return <Link href={'/' + RecipesResponce.links.prev.split('?')[1]}>
+                return <Link href={'/search/' + RecipesResponce.links.prev.split('?')[1]}>
                   <div className="my-7 mx-3 font-semibold absolute left-0 cursor-pointer">前のページ</div>
                 </Link>
               }
@@ -64,7 +65,7 @@ const Pagenatoin: FC = () => {
 
           {(() => {
             if(RecipesResponce.links.next) {
-              return <Link href={'/' + RecipesResponce.links.next.split('?')[1]}>
+              return <Link href={'/search/' + RecipesResponce.links.next.split('?')[1]}>
                 <div className="my-7 mx-3 font-semibold absolute right-0 cursor-pointer">次のページ</div>
               </Link>
             }
