@@ -2,9 +2,15 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "graphql": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.21.3",
+    "@graphql-codegen/introspection": "1.18.1",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "1.17.15",
+    "@graphql-codegen/typescript-react-apollo": "2.2.3",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "autoprefixer": "^10.2.5",
@@ -14,6 +20,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.12",
+    "@graphql-codegen/typescript-graphql-request": "^3.1.0",
+    "@graphql-codegen/typescript-resolvers": "^1.19.0",
     "apollo-server-micro": "^2.21.2",
     "dexie": "^3.0.3",
     "dexie-react-hooks": "^1.0.6",

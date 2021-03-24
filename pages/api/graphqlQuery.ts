@@ -1,5 +1,4 @@
 import { RecipesResponce, Recipe } from "./getRecipes";
-import { gql } from '@apollo/client';
 
 export async function getRecipesQL(option?): Promise<RecipesResponce> {
   if(!option){

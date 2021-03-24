@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from "apollo-server-micro";
-import { searchRecipes } from "./getRecipes"
+import { Resolvers } from '../../src/generated/resolvers'
 
 const typeDefs = gql`
   type Query {
@@ -52,7 +52,7 @@ const typeDefs = gql`
 
 `;
 
-const resolvers = {
+const resolvers: Resolvers = {
   Query: {
     recipesQuery: async (parent, args, context, info) => {
       let url = 'https://internship-recipe-api.ckpd.co/recipes'

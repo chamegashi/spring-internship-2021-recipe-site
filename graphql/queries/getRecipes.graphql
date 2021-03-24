@@ -1,0 +1,14 @@
+query {
+    recipesQuery(recipesRequest: {$option: String}) {
+        recipes {
+            id
+            title
+            description
+            image_url
+        }
+        links {
+            next
+            prev
+        }
+    }
+}

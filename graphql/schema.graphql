@@ -1,0 +1,47 @@
+type Query {
+    recipesQuery(recipesRequest: RecipesRequest): RecipesResponce
+    recipeQuery(recipeRequest: RecipeRequest): Recipe
+    searchQuery(searchRequest: SearchRequest): RecipesResponce
+}
+
+input RecipesRequest {
+    option: String
+}
+
+input RecipeRequest {
+    id: ID
+}
+
+input SearchRequest {
+    option: String
+}
+
+type RecipesResponce {
+    recipes: [Recipe]
+    links: Links
+}
+
+type Links {
+    next: String
+    prev: String
+}
+
+type Recipe {
+    id: ID!
+    title: String!
+    description: String!
+    image_url: String
+    author: Author
+    steps: [String]
+    published_at: String
+    ingredients: [Ingredients]
+}
+
+type Author {
+    user_name: String
+}
+
+type Ingredients {
+    name: String
+    quantity: String
+}
