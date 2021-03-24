@@ -55,18 +55,41 @@ export async function getRecipesQL(option?): Promise<RecipesResponce> {
     })
   });
   const responce = await res.json();
-  console.log(responce.data.recipesQuery)
   return responce.data.recipesQuery;
 }
 
 export async function getRecipeQL(id: string | string[]): Promise<Recipe> {
-  const url = 'https://internship-recipe-api.ckpd.co/recipes?id=' + id
+  if(!id){
+    id = 'notId'
+  }
+  const url = 'http://localhost:3000/api/graphql'
   const res = await fetch(url, {
-    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query:
+    `
+    query {
+      recipeQuery(recipeRequest: {id: "` + id + `"}) {
+          id
+          title
+          description
+          image_url
+          author {
+            user_name
+          }
+          steps
+          published_at
+          ingredients {
+				    name
+    				quantity
+          }
+        }
+    }
+    `
+    })
   });
-  const recipe = await res.json();
-  console.log(recipe)
-  return recipe.recipes[0];
+  const responce = await res.json();
+  return responce.data.recipeQuery;
 }
 
 export async function searchRecipesQL(option): Promise<RecipesResponce> {

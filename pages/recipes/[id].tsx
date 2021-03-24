@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
-import { getRecipe, Recipe } from '../api/getRecipes';
+import { Recipe } from '../api/getRecipes';
+import { getRecipeQL } from '../api/graphqlQuery'
 import { GetServerSideProps, NextPage } from 'next';
 
 import db from '../api/db';
@@ -114,7 +115,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  const recipe = await getRecipe(id);
+  const recipe = await getRecipeQL(id);
   return {
     props: {
       recipe: recipe,

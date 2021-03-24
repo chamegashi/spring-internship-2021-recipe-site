@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from "apollo-server-micro";
-import { getRecipe, searchRecipes } from "./getRecipes"
+import { searchRecipes } from "./getRecipes"
 
 const typeDefs = gql`
   type Query {
@@ -13,7 +13,7 @@ const typeDefs = gql`
   }
 
   input RecipeRequest {
-    id: ID!
+    id: ID
   }
 
   input SearchRequest {
@@ -38,7 +38,7 @@ const typeDefs = gql`
     author: Author
     steps: [String]
     published_at: String
-    ingredients: Ingredients
+    ingredients: [Ingredients]
   }
 
   type Author {
@@ -73,10 +73,17 @@ const resolvers = {
       return recipes;
     },
     recipeQuery: async (parent, args, context, info) => {
-      const resRecipe = await getRecipe(args.recipeRequest.id)
+      let url = 'https://internship-recipe-api.ckpd.co/recipes?id='
 
-      let recipe = resRecipe
-      return recipe;
+      if(args.recipeRequest.id){
+        url = 'https://internship-recipe-api.ckpd.co/recipes?id=' + args.recipeRequest.id
+      }
+
+      const res = await fetch(url, {
+        headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY }
+      });
+      const responce = await res.json()
+      return responce.recipes[0];    
     },
     searchQuery: async (parent, args, context, info) => {
       const resRecipes = await searchRecipes(args.searchRequest.id)
