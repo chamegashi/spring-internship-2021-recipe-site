@@ -21,6 +21,7 @@ export type Query = {
   recipesQuery?: Maybe<RecipesResponce>;
   recipeQuery?: Maybe<Recipe>;
   searchQuery?: Maybe<RecipesResponce>;
+  addRecipeQuery?: Maybe<Recipe>;
 };
 
 
@@ -38,6 +39,11 @@ export type QuerySearchQueryArgs = {
   searchRequest?: Maybe<SearchRequest>;
 };
 
+
+export type QueryAddRecipeQueryArgs = {
+  addRecipeRequest?: Maybe<AddRecipeRequest>;
+};
+
 export type RecipesRequest = {
   option?: Maybe<Scalars['String']>;
 };
@@ -48,6 +54,19 @@ export type RecipeRequest = {
 
 export type SearchRequest = {
   option?: Maybe<Scalars['String']>;
+};
+
+export type AddRecipeRequest = {
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  image_url?: Maybe<Scalars['String']>;
+  steps?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ingredients?: Maybe<Array<Maybe<InputIngredients>>>;
+};
+
+export type InputIngredients = {
+  name?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['String']>;
 };
 
 export type RecipesResponce = {
@@ -175,6 +194,8 @@ export type ResolversTypes = {
   RecipeRequest: RecipeRequest;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   SearchRequest: SearchRequest;
+  AddRecipeRequest: AddRecipeRequest;
+  InputIngredients: InputIngredients;
   RecipesResponce: ResolverTypeWrapper<RecipesResponce>;
   Links: ResolverTypeWrapper<Links>;
   Recipe: ResolverTypeWrapper<Recipe>;
@@ -194,6 +215,8 @@ export type ResolversParentTypes = {
   RecipeRequest: RecipeRequest;
   ID: Scalars['ID'];
   SearchRequest: SearchRequest;
+  AddRecipeRequest: AddRecipeRequest;
+  InputIngredients: InputIngredients;
   RecipesResponce: RecipesResponce;
   Links: Links;
   Recipe: Recipe;
@@ -213,6 +236,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   recipesQuery?: Resolver<Maybe<ResolversTypes['RecipesResponce']>, ParentType, ContextType, RequireFields<QueryRecipesQueryArgs, never>>;
   recipeQuery?: Resolver<Maybe<ResolversTypes['Recipe']>, ParentType, ContextType, RequireFields<QueryRecipeQueryArgs, never>>;
   searchQuery?: Resolver<Maybe<ResolversTypes['RecipesResponce']>, ParentType, ContextType, RequireFields<QuerySearchQueryArgs, never>>;
+  addRecipeQuery?: Resolver<Maybe<ResolversTypes['Recipe']>, ParentType, ContextType, RequireFields<QueryAddRecipeQueryArgs, never>>;
 };
 
 export type RecipesResponceResolvers<ContextType = any, ParentType extends ResolversParentTypes['RecipesResponce'] = ResolversParentTypes['RecipesResponce']> = {

@@ -21,6 +21,7 @@ export type Query = {
   recipesQuery?: Maybe<RecipesResponce>;
   recipeQuery?: Maybe<Recipe>;
   searchQuery?: Maybe<RecipesResponce>;
+  addRecipeQuery?: Maybe<Recipe>;
 };
 
 
@@ -38,6 +39,11 @@ export type QuerySearchQueryArgs = {
   searchRequest?: Maybe<SearchRequest>;
 };
 
+
+export type QueryAddRecipeQueryArgs = {
+  addRecipeRequest?: Maybe<AddRecipeRequest>;
+};
+
 export type RecipesRequest = {
   option?: Maybe<Scalars['String']>;
 };
@@ -48,6 +54,19 @@ export type RecipeRequest = {
 
 export type SearchRequest = {
   option?: Maybe<Scalars['String']>;
+};
+
+export type AddRecipeRequest = {
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  image_url?: Maybe<Scalars['String']>;
+  steps?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ingredients?: Maybe<Array<Maybe<InputIngredients>>>;
+};
+
+export type InputIngredients = {
+  name?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['String']>;
 };
 
 export type RecipesResponce = {

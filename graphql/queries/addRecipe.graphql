@@ -1,0 +1,4 @@
+query addRecipeQuery($title: String, $description: String, $steps: [String], $ingredients: [Ingredients])
+{ 
+    recipe: Recipe
+}

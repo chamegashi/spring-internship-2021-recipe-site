@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import Link from "next/link";
 
 import { Ingredients, Validations } from './api/interface';
+import { addRecipesQL } from './api/graphqlQuery'
 import 'tailwindcss/tailwind.css'
 
 const Home: FC = () => {
@@ -43,7 +44,7 @@ const Home: FC = () => {
     setSteps(newSteps);
   }
 
-	const sendRecipe = (event) => {
+	async function sendRecipe (event) {
 		let validation: Validations = initValidation()
 		if ( !title || !author || !description || ingredients.length === 0 || steps.length === 0) {
 			if ( !title ) validation.title = true
@@ -59,9 +60,20 @@ const Home: FC = () => {
 		}
 
 		validation = initValidation()
-
 		setvalidations(validation)
-		console.log("done")
+
+		const res = await addRecipesQL({
+			'title': title,
+			'description': description,
+			'ingredients': ingredients,
+			'steps': steps
+		})
+
+		if(res.id){
+			alert("投稿に成功しました！")
+		} else {
+			console.log("error")
+		}
 	}
 
 	const initValidation = () => {

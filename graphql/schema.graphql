@@ -16,6 +16,19 @@ input SearchRequest {
     option: String
 }
 
+input AddRecipeRequest {
+    title: String
+    description: String
+    image_url: String
+    steps: [String]
+    ingredients: [InputIngredients]
+}
+
+input InputIngredients {
+    name: String
+    quantity: String
+}
+
 type RecipesResponce {
     recipes: [Recipe]
     links: Links
