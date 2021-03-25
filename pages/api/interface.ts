@@ -27,3 +27,12 @@ export type Ingredients = {
   name: string;
   quantity: string;
 }
+
+export type Validations = {
+  title: boolean;
+  author: boolean;
+  description: boolean;
+  ingredients: boolean;
+  steps: boolean;
+  error: boolean;
+}

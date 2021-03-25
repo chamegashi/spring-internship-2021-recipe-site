@@ -26,6 +26,11 @@ const Home: FC<Props> = (props) => {
             <Link href="/">
               <span className="text-3xl cursor-pointer">レシピ検索！</span>
             </Link>
+            <div className="absolute right-12 top-0 my-2 mx-4">
+              <Link href="/newRecipe">
+                <img className="h-9 cursor-pointer" src="/plus.png"></img>
+              </Link>
+            </div>
             <div className="absolute right-0 top-0 my-2 mx-4">
               <Link href="/favorite">
                 <img className="h-9 cursor-pointer" src="/star.png"></img>
