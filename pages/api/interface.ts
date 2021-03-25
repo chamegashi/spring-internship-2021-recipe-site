@@ -22,3 +22,8 @@ export type RecipesResponce = {
     prev?: string;
   };
 }
+
+export type Ingredients = {
+  name: string;
+  quantity: string;
+}
