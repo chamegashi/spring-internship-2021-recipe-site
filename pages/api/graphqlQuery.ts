@@ -1,6 +1,4 @@
-import { GraphQLClient } from "graphql-request"
-import { getSdk } from "../../src/generated/client"
-import { RecipesResponce, Recipe } from "./interface";
+import { RecipesResponce, Recipe, PutImageUrls } from "./interface";
 
 export async function getRecipesQL(option?): Promise<RecipesResponce> {
   if(!option){
@@ -106,4 +104,28 @@ export async function addRecipesQL(request): Promise<Recipe> {
   });
   const responce = await res.json();
   return responce;
+}
+
+export async function getPresignedUrlQL(): Promise<PutImageUrls> {
+  let url = 'https://internship-recipe-api.ckpd.co/image_urls'
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'X-Api-Key': process.env.NEXT_PUBLIC_API_KEY, "Content-Type": 'application/json' },
+  });
+
+  const responce = await res.json();
+  return responce;
+}
+
+export async function putImageOfRecipe(url: string, file: File){
+
+  const res = await fetch(url, {
+    method: 'PUT',
+    body: file,
+  });
+
+  const responce = await res.json()
+  console.log(responce)
+  return responce
 }

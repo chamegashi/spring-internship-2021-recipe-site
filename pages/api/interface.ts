@@ -36,3 +36,8 @@ export type Validations = {
   steps: boolean;
   error: boolean;
 }
+
+export type PutImageUrls = {
+  object_url: string;
+  presigned_url: string;
+}
