@@ -17,6 +17,9 @@ export async function getRecipesQL(option?): Promise<RecipesResponce> {
           title
           description
           image_url
+          author {
+            user_name
+          }
         }
         links {
           next
@@ -80,6 +83,9 @@ export async function searchRecipesQL(option): Promise<RecipesResponce> {
           title
           description
           image_url
+          author {
+            user_name
+          }
         }
         links {
           next

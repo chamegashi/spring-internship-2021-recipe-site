@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Recipe } from '../pages/api/interface';
+import RecipeCard from './card'
 import Link from "next/link";
 import 'tailwindcss/tailwind.css'
 
@@ -10,9 +11,17 @@ type Props = {
 const recipesList: FC<Props> = (props) => {
 
   return (
-        <div className="App text-gray-700 cursor-pointer">
+        <div className="text-gray-700 cursor-pointer flex flex-wrap content-center">
 
-          {props.recipes.map((recipe, i) => {
+        { props.recipes.map((recipe, i) => {
+          return <div key={i} className="max-w-md h-md">
+                   <RecipeCard recipe={recipe}/>
+                 </div>
+        })}
+
+
+
+          {/* {props.recipes.map((recipe, i) => {
             return <Link key={i} href={'/recipes/' + recipe.id}>
                 <div className="border border-b-2 border-bg-300 h-28 flex justify-center">
                   <div className="w-1/3">
@@ -24,7 +33,8 @@ const recipesList: FC<Props> = (props) => {
                   </div>
                 </div>
               </Link>
-          })}
+          })} */}
+
       </div>
   );
 };

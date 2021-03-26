@@ -80,15 +80,15 @@ const Home: FC = () => {
 		}
 	}
 
-    async function getTestUrl (event) {
-        const file = document.getElementById('file');
-        console.log(file)
+	async function getTestUrl (event) {
+		const file = document.getElementById('file');
+		console.log(file)
 		const urls = await getPresignedUrlQL()
-        console.log(urls)
-        // await putImageOfRecipe(urls.presigned_url, file)
+		console.log(urls)
+		// await putImageOfRecipe(urls.presigned_url, file)
 
-        console.log(urls)
-    }
+		console.log(urls)
+	}
 
 	const initValidation = () => {
 		return {
@@ -126,22 +126,36 @@ const Home: FC = () => {
 				let newSteps = steps.slice();
 				newSteps[Number(event.target.name)] = event.target.value
 				setSteps(newSteps)
-                break;
-            case 'file':
-                let newFile = document.getElementById('file')
-                console.log(newFile)
-                let newfile = event.target.value
-                console.log(typeof(newfile))
+				break;
+			case 'file':
+				let newFile = document.getElementById('file')
+				console.log(newFile)
+				let newfile = event.target.value
+				console.log(typeof(newfile))
 		}
 	}
 
   return (
 		<div className="App text-gray-700">
 			<div className="bg-gray-300 py-2 text-center relative">
-			<Link href="/">
-			  <span className="text-3xl cursor-pointer">レシピ追加！</span>
-			</Link>
-		  </div>
+				<Link href={'/'}>
+					<div className="mx-2 font-semibold text-lg absolute left-0 cursor-pointer">トップページへ</div>
+				</Link>
+				<Link href="/">
+					<span className="text-3xl cursor-pointer font-black">レシピ検索</span>
+				</Link>
+				<div className="absolute right-12 top-0 my-2 mx-4">
+					<Link href="/newRecipe">
+						<img className="h-9 cursor-pointer" src="/plus.png"></img>
+					</Link>
+				</div>
+	 		   <div className="absolute right-0 top-0 my-2 mx-4">
+					<Link href="/favorite">
+						<img className="h-9 cursor-pointer" src="/star.png"></img>
+				  </Link>
+				</div>
+			</div>
+
 
 			{/* <img src={recipe?.image_url} className="width-full"></img> */}	
 
@@ -184,12 +198,12 @@ const Home: FC = () => {
 				</textarea>
 			</label>
 
-            {/* image */}
-            
-            <div className="m-1">
-                <p className="m-2 text-xl font-black">レシピのイメージ画像</p>
-                <input id="file" onChange={changeText} className="m-3" type="file"/>
-            </div>
+			{/* image */}
+			
+			<div className="m-1">
+				<p className="m-2 text-xl font-black">レシピのイメージ画像</p>
+				<input id="file" onChange={changeText} className="m-3" type="file"/>
+			</div>
 
 			{/* ingredients */}
 
@@ -215,11 +229,11 @@ const Home: FC = () => {
 
 			<div className="mt-2 py-1 pl-4 font-semibold bg-gray-300">手順</div>
 			{steps.map((step, i) => {
-                return <div key={i} className="border-t-2 border-gray-300 flex justify-center">
-			        <div className="text-center w-1/12 font-semibold p-4">{(i+1 + ".")}</div>
-				    <textarea id="step" onChange={changeText} value={step} name={i.toString()} className="w-4/5 my-1 p-2 block border rounded-xl border-gray-300" placeholder="手順"></textarea>
-				    <button onClick={deleteStep} name={i.toString()} className="text-center w-1/12 bg-transparent hover:bg-gray-500 text-gray-700 hover:text-white m-2 p-2 border border-gray-500 hover:border-transparent font-black rounded">-</button>
-	            </div>
+				return <div key={i} className="border-t-2 border-gray-300 flex justify-center">
+					<div className="text-center w-1/12 font-semibold p-4">{(i+1 + ".")}</div>
+					<textarea id="step" onChange={changeText} value={step} name={i.toString()} className="w-4/5 my-1 p-2 block border rounded-xl border-gray-300" placeholder="手順"></textarea>
+					<button onClick={deleteStep} name={i.toString()} className="text-center w-1/12 bg-transparent hover:bg-gray-500 text-gray-700 hover:text-white m-2 p-2 border border-gray-500 hover:border-transparent font-black rounded">-</button>
+				</div>
 			})}
 			<button onClick={addStep}
 				className={validations.steps?
@@ -232,21 +246,21 @@ const Home: FC = () => {
 
 			<div className="m-8">
 			{(() => {
-            	if(validations.error) {
-				    return <span className="text-red-500 font-black">赤い枠は必須項目です！</span>
-	  		    }
+				if(validations.error) {
+					return <span className="text-red-500 font-black">赤い枠は必須項目です！</span>
+	  			}
 			})()}
 
 			{/* 投稿処理中のローディングが欲しい */}
 			<button onClick={sendRecipe} className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white mt-2 py-2 border border-yellow-500 hover:border-transparent w-full rounded">
-			    レシピを追加する
+				レシピを追加する
 			</button>
 			<button onClick={getTestUrl} className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white mt-2 py-2 border border-yellow-500 hover:border-transparent w-full rounded">
-			    url test
+				url test
 			</button>
 			</div>
 		</div>
-    );
+	);
 };
 
 export const getStaticProps = async () => {
