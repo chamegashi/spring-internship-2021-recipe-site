@@ -56,7 +56,7 @@ const Home: FC<Props> = (props) => {
         <div className="h-24 relative border-t-2 border-gray-300">
 
           {(() => {
-              if(RecipesResponce.links.prev!) {
+              if(RecipesResponce.links?.prev) {
                 return <Link href={'/' + RecipesResponce.links.prev.split('?')[1]}>
                   <div className="my-7 mx-3 text-lg font-semibold absolute left-0 cursor-pointer">前のページ</div>
                 </Link>
@@ -64,7 +64,7 @@ const Home: FC<Props> = (props) => {
             })()}
 
           {(() => {
-            if(RecipesResponce.links.next!) {
+            if(RecipesResponce.links?.next) {
               return <Link href={'/' + RecipesResponce.links.next.split('?')[1]}>
                 <div className="my-7 mx-3 text-lg font-semibold absolute right-0 cursor-pointer">次のページ</div>
               </Link>
