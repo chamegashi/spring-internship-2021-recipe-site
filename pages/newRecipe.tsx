@@ -142,7 +142,7 @@ const Home: FC = () => {
 					<div className="mx-2 font-semibold text-lg absolute left-0 cursor-pointer">トップページへ</div>
 				</Link>
 				<Link href="/">
-					<span className="text-3xl cursor-pointer font-black">レシピ検索</span>
+					<span className="text-3xl cursor-pointer font-black">レシピ追加</span>
 				</Link>
 				<div className="absolute right-12 top-0 my-2 mx-4">
 					<Link href="/newRecipe">
@@ -209,7 +209,7 @@ const Home: FC = () => {
 
 			<div className="mt-2 py-1 pl-4 font-semibold bg-gray-300">材料</div>
 			{ingredients.map((food, i) => {
-				return <div key={i} className="p-1 border-t-2 border-gray-300 flex justiry-center">
+				return <div key={i} className="p-1 border-dotted border-b-2 border-gray-400 flex justiry-center">
 				  <input id="ingredientsName" onChange={changeText} value={food.name} name={i.toString()} className="m-2 p-1 border rounded-xl border-gray-300 w-5/12" placeholder="材料"></input>
 				  <div className="w-1/12"></div>
 				  <input id="ingredientsQuantity" onChange={changeText} value={food.quantity} name={i.toString()} className="m-2 p-1 border rounded-xl border-gray-300 w-5/12" placeholder="分量"></input>
@@ -229,7 +229,7 @@ const Home: FC = () => {
 
 			<div className="mt-2 py-1 pl-4 font-semibold bg-gray-300">手順</div>
 			{steps.map((step, i) => {
-				return <div key={i} className="border-t-2 border-gray-300 flex justify-center">
+				return <div key={i} className="my-1 border-b-2 border-dotted border-gray-400 flex justify-center">
 					<div className="text-center w-1/12 font-semibold p-4">{(i+1 + ".")}</div>
 					<textarea id="step" onChange={changeText} value={step} name={i.toString()} className="w-4/5 my-1 p-2 block border rounded-xl border-gray-300" placeholder="手順"></textarea>
 					<button onClick={deleteStep} name={i.toString()} className="text-center w-1/12 bg-transparent hover:bg-gray-500 text-gray-700 hover:text-white m-2 p-2 border border-gray-500 hover:border-transparent font-black rounded">-</button>
@@ -255,9 +255,9 @@ const Home: FC = () => {
 			<button onClick={sendRecipe} className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white mt-2 py-2 border border-yellow-500 hover:border-transparent w-full rounded">
 				レシピを追加する
 			</button>
-			<button onClick={getTestUrl} className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white mt-2 py-2 border border-yellow-500 hover:border-transparent w-full rounded">
+			{/* <button onClick={getTestUrl} className="bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white mt-2 py-2 border border-yellow-500 hover:border-transparent w-full rounded">
 				url test
-			</button>
+			</button> */}
 			</div>
 		</div>
 	);

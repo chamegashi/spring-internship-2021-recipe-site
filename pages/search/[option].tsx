@@ -12,13 +12,21 @@ const Pagenatoin: FC = () => {
 
   const [RecipesResponce, setRecipe] = useState<RecipesResponce | null>(null);
   const [searchText, setSearchText] = useState<string>('');
+  const [searchShowText, setShowSearchText] = useState<string>('');
 
   useEffect(() => {
     (async () => {
       const RecipesResponce = await searchRecipesQL(router.query.option);
       setRecipe(RecipesResponce);
     })();
-  }, [router.query.option]);
+    if(typeof router.query.option === 'string'){
+      const option = router.query.option
+      let res = option.split('=')
+      res = res[1].split('&')
+      setSearchText(res[0])
+      setShowSearchText(res[0])
+    }
+    }, [router.query.option]);
 
   if (RecipesResponce === null) return <div> Loading </div>
 
@@ -60,22 +68,26 @@ const Pagenatoin: FC = () => {
             </div>
           </div>
 
+        <div className="mb-1 p-2 font-semibold text-xl bg-gray-300 text-center">
+          {'"' + searchShowText + '" の検索結果'}
+        </div>
+
         <RecipesList recipes={RecipesResponce.recipes}/>
 
-        <div className="h-24 relative">
+        <div className="h-24 relative border-t-2 border-gray-300">
 
           {(() => {
-              if(RecipesResponce.links.prev) {
+              if(RecipesResponce.links.prev!) {
                 return <Link href={'/search/' + RecipesResponce.links.prev.split('?')[1]}>
-                  <div className="my-7 mx-3 font-semibold absolute left-0 cursor-pointer">前のページ</div>
+                  <div className="my-7 mx-3 text-lg font-semibold absolute left-0 cursor-pointer">前のページ</div>
                 </Link>
               }
             })()}
 
           {(() => {
-            if(RecipesResponce.links.next) {
+            if(RecipesResponce.links.next!) {
               return <Link href={'/search/' + RecipesResponce.links.next.split('?')[1]}>
-                <div className="my-7 mx-3 font-semibold absolute right-0 cursor-pointer">次のページ</div>
+                <div className="my-7 mx-3 text-lg font-semibold absolute right-0 cursor-pointer">次のページ</div>
               </Link>
             }
             })()}
