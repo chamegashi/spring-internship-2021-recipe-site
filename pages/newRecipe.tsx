@@ -200,10 +200,10 @@ const Home: FC = () => {
 
 			{/* image */}
 			
-			<div className="m-1">
+			{/* <div className="m-1">
 				<p className="m-2 text-xl font-black">レシピのイメージ画像</p>
 				<input id="file" onChange={changeText} className="m-3" type="file"/>
-			</div>
+			</div> */}
 
 			{/* ingredients */}
 
